@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, except: %i[ index show ]
 
   # GET /articles or /articles.json
   def index
@@ -21,7 +22,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = current_admin.articles.build(article_params)
 
     respond_to do |format|
       if @article.save
@@ -65,6 +66,7 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:admin_id, :title, :body, :status)
+      params[:article][:status] = params[:article][:status].to_i
+      params.require(:article).permit(:title, :body, :status)
     end
 end
