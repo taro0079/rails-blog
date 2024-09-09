@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_09_064647) do
-  create_table "admins", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2024_09_09_065459) do
+  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -22,4 +22,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_064647) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
+
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "admin_id", null: false
+    t.text "title"
+    t.text "body"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_articles_on_admin_id"
+  end
+
+  add_foreign_key "articles", "admins"
 end
