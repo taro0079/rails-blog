@@ -17,7 +17,7 @@ COPY Gemfile Gemfile.lock .
 
 #コンテナ内にコピーしたGemfileを用いてbundle install
 RUN bundle install
-RUN rm -f /rails/tmp/pids/server.pid
+# RUN rm -f /rails/tmp/pids/server.pid
 
 #railsを起動する
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]

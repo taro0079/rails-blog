@@ -10,9 +10,10 @@ services:
     volumes:
       - db-data:/var/lib/mysql
   web:
-    # command: >
-    #   bash -c "rm -f /docker_rails_test/tmp/pids/server.pid && rails server"
+    command: >
+      bash -c "rm -f /docker_rails_test/tmp/pids/server.pid && ./bin/dev"
     build: .
+    tty: true
     depends_on:
       - db
     environment:
