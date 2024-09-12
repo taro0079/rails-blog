@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "home#index"
   resources :articles
+  resources :my_codes
   devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
