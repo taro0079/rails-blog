@@ -8,6 +8,17 @@ class MyCodesController < ApplicationController
     http.use_ssl = true
     headers = { "Accept"=> "application/vnd.github.v3.raw" }
     response = http.get(uri.request_uri, headers)
-  @my_code = response.body
+    @my_code = response.body
   end
+
+  private
+
+  # def escape_html(text)
+  #   text
+  #   .gsub("&", "&amp;")
+  #   .gsub("<", "&lt;")
+  #   .gsub(">", "&gt;")
+  #   .gsub('"', "&quot;")
+  #   .gsub("'", "&#039;")
+  # end
 end
