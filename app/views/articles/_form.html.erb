@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
+    <%= form.text_area :title, class: "textarea" %>
   </div>
 
   <div>
@@ -23,10 +23,10 @@
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
+    <%= form.number_field :status, class: "form" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn-primary" %>
   </div>
 <% end %>

@@ -3,17 +3,21 @@
 <% content_for :title, "Articles" %>
 
 <h1>Articles</h1>
-<div id="articles" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div id="articles" class="gap-6">
   <% @articles.each do |article| %>
-    <div class="bg-white border border-gray-200 shadow-md rounded-lg p-6">
-      <h2 class="text-xl font-semibold mb-4"><%= link_to article.title, article, class: "text-blue-500 hover:underline" %></h2>
+    <div class="content">
+      <h2><%= link_to article.title, article, class: "article-title" %></h2>
       <p class="text-gray-700 mb-4"><%= truncate(article.body, length: 150) %></p>
       <p class="text-sm text-gray-500 mb-2"><strong>Created at:</strong> <%= article.created_at.strftime("%Y-%m-%d") %></p>
       <p class="text-sm text-gray-500 mb-4"><strong>Updated at:</strong> <%= article.updated_at.strftime("%Y-%m-%d") %></p>
-      <%= link_to "Edit", edit_article_path(article), class: "inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" %>
+      <% if current_admin %>
+        <%= link_to "Edit", edit_article_path(article), class: "inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" %>
+      <% end %>
     </div>
   <% end %>
 </div>
 
 
-<%= link_to "New article", new_article_path, class: "btn-new-article" %>
+<% if current_admin %>
+  <%= link_to "New article", new_article_path, class: "btn-new-article" %>
+<% end %>
